@@ -1,0 +1,19 @@
+name: GitGudSimilarIssues comments
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  getSimilarIssues:
+    runs-on: ubuntu-latest
+    outputs:
+      message: ${{ steps.getBody.outputs.message }}
+    steps:
+      - id: getBody
+        uses: craigloewen-msft/GitGudSimilarIssues@main
+        with:
+          issueTitle: ${{ github.event.issue.title }}
+          issueBody: ${{ github.event.issue.body }}
+          repo: ${{ github.repository }}
+          similaritytolerance: "0.75"
