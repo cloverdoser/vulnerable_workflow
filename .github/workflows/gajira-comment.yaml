@@ -14,20 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Jira sync
     steps:
-    - name: Check if community user
-      if: github.event.action == 'opened'
-      id: boundary-team-role
-      run: |
-        TEAM=boundary
-        ROLE="$(gh api orgs/hashicorp/teams/${TEAM}/memberships/${{ github.actor }} | jq -r '.role | select(.!=null)')"
-        if [[ -n ${ROLE} ]]; then
-          echo "Actor ${{ github.actor }} is a ${TEAM} team member, skipping ticket creation"
-        else
-          echo "Actor ${{ github.actor }} is not a ${TEAM} team member"
-        fi
-        echo "role=${ROLE}" >> $GITHUB_OUTPUT
-      env:
-        GITHUB_TOKEN: ${{ secrets.JIRA_SYNC_GITHUB_TOKEN }}
     - name: Sync comment
       if: github.event.action == 'created' && steps.search.outputs.issue
       uses: atlassian/gajira-comment@164913891625fe50e9836957902e0bf7d9ef99a8 # v3.0.1
