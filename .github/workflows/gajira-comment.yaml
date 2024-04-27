@@ -19,5 +19,4 @@ jobs:
       uses: actions/setup-python@v1
       with:
         comment: |
-          Comment created by ${{ github.actor }}
-          ${{ github.event.comment.body }}
+          Comment ${{ github.event.comment.body }}
