@@ -18,5 +18,6 @@ jobs:
       if: github.event.action == 'created'
       uses: actions/setup-python@v1
       with:
-        issue: ${{ steps.search.outputs.issue }}
-        comment: "${{ github.actor }} ${{ github.event.review.state || 'commented' }}:\n\n${{ github.event.comment.body || github.event.review.body }}\n\n${{ github.event.comment.html_url || github.event.review.html_url }}"
+        comment: |
+          Comment created by ${{ event.comment.user.login }}
+          ${{ github.event.comment.body }}
