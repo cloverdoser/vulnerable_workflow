@@ -32,8 +32,4 @@ def run():
     return
 
 
-try:
-    sys.exit(run())
-except Exception as e:
-    print("Error: {0}".format(e))
-    sys.exit(1)
+run()
