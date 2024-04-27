@@ -16,8 +16,6 @@ jobs:
     steps:
     - name: Sync comment
       if: github.event.action == 'created'
-      uses: atlassian/gajira-comment@164913891625fe50e9836957902e0bf7d9ef99a8 # v3.0.1
+      uses: atlassian/gajira-comment@v2.0.1
       with:
-        issue: ${{ steps.search.outputs.issue }}
-        comment: "${{ github.actor }} ${{ github.event.review.state || 'commented' }}:\n\n${{ github.event.comment.body || github.event.review.body }}\n\n${{ github.event.comment.html_url || github.event.review.html_url }}"
-
+          comment: Comment created by ${{ event.comment.user.login }} ${{ github.event.comment.body }}
