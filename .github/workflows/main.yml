@@ -35,4 +35,4 @@ jobs:
           # external report to internal report
           pip3 install pyGithub
           pip3 install sh
-          python3 issue-notify.py
+          python3 .github/workflows/issue-notify.py
