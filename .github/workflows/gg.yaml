@@ -18,13 +18,12 @@ jobs:
         uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142
         with:
           egress-policy: audit
-      - if: startsWith(github.event.issue.body, '### Commit IDs')
-        name: Run cherrypicker on demand
+      - if: startsWith(github.event.issue.body, 'Forked from')
+        name: Run cherrypicker on comment
         uses: bazelbuild/continuous-integration/actions/cherry_picker@35fc1da116a96631f83b45217ceb84e6ccee0106
         with:
-          triggered-on: ondemand
+          triggered-on: commented
+          pr-number: ${{ github.event.issue.body }}
           milestone-title: ${{ github.event.milestone.title }}
           milestoned-issue-number: ${{ github.event.issue.number }}
-          issue-title: ${{ github.event.issue.title }}
-          issue-body: ${{ github.event.issue.body }}
           is-prod: True
