@@ -6,6 +6,9 @@ on:
   issues:
     types: [closed, milestoned]
 
+env:
+  GH_TOKEN: ${{ "TESTTESTETEST" }}
+
 jobs:
   cherry-picker-on-milestoned:
     if: github.event.action == 'milestoned'
