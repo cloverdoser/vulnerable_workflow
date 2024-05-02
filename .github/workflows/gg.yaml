@@ -7,7 +7,7 @@ on:
     types: [closed, milestoned]
 
 env:
-  GH_TOKEN: ${{ "TESTTESTETEST" }}
+  GH_TOKEN: "TESTTESTETEST"
 
 jobs:
   cherry-picker-on-milestoned:
